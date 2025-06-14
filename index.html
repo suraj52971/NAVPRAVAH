@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -556,4 +557,451 @@
             background-color: #374151; /* Dark gray on hover */
         }
 
-        /* Media
+        /* Media Queries for Social Media Grid */
+        @media (min-width: 768px) { /* md breakpoint */
+            .social-media-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+            }
+        }
+
+        /* --- Apply Section (Redirects) Styles --- */
+        .apply-section {
+            padding: 4rem 1rem; /* 64px top/bottom, 16px left/right */
+            background-color: var(--light-grey-bg);
+            text-align: center;
+        }
+        .apply-section h2 {
+            font-size: 2.25rem; /* 36px */
+            font-weight: 700;
+            margin-bottom: 2rem; /* 32px */
+            color: var(--primary-blue);
+        }
+        .apply-section p {
+            font-size: 1.125rem; /* 18px */
+            color: var(--text-grey);
+            margin-bottom: 1.5rem; /* 24px */
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .apply-section .apply-button {
+            display: inline-block;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            font-weight: 700;
+            padding: 0.75rem 2rem; /* 12px 32px */
+            border-radius: var(--border-radius-full);
+            font-size: 1.125rem; /* 18px */
+            box-shadow: 0 4px 6px -1px var(--shadow-medium);
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .apply-section .apply-button:hover {
+            background-color: var(--dark-blue);
+            transform: scale(1.05);
+        }
+
+        /* --- Footer Section Styles --- */
+        .footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 2rem 1rem; /* 32px top/bottom, 16px left/right */
+            text-align: center;
+        }
+        .footer p {
+            font-size: 0.875rem; /* 14px */
+            margin: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="header">
+        <nav class="container header-nav">
+            <!-- Logo/Home Button -->
+            <a href="#" class="header-logo-link">
+                <img src="images/logo1.png" alt="Navpravah Foundation Logo" class="header-logo">
+            </a>
+
+            <!-- Mobile Menu Button (Hamburger Icon) -->
+            <button id="mobile-menu-button" class="mobile-menu-button">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                </svg>
+            </button>
+
+            <!-- Desktop Navigation Menu -->
+            <ul class="desktop-nav-menu">
+                <li><a href="https://forms.gle/wGdxhF4FzKjDKgPi8" target="_blank">Apply</a></li>
+                <li><a href="#program-structure">Program</a></li>
+                <li><a href="#mission">Mission</a></li>
+                <li><a href="#background">About Us</a></li>
+                <li><a href="#connect">Connect</a></li>
+            </ul>
+        </nav>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="mobile-nav-menu">
+            <ul>
+                <li><a href="https://forms.gle/wGdxhF4FzKjDKgPi8" target="_blank">Apply</a></li>
+                <li><a href="#program-structure">Program</a></li>
+                <li><a href="#mission">Mission</a></li>
+                <li><a href="#background">About Us</a></li>
+                <li><a href="#connect">Connect</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section">
+            <div class="container">
+                <h1>Empowering Youth, Transforming Bihar</h1>
+                <p>Nurturing a generation of skilled, socially conscious, and civically engaged changemakers.</p>
+                <a href="https://forms.gle/wGdxhF4FzKjDKgPi8" target="_blank" class="hero-button">
+                    Apply for Fellowship
+                </a>
+            </div>
+        </section>
+
+        <!-- Background & Vision Section -->
+        <section id="background" class="content-section bg-white">
+            <div class="container max-w-4xl">
+                <h2>Background & Vision</h2>
+                <div>
+                    <p>Bihar, one of India’s youngest states in terms of demographics, faces a paradox of potential and neglect. While youth represent a powerful force for social transformation, many are constrained by limited exposure, lack of mentorship, training and inadequate access to skill-building platforms. Rural and semi-urban areas, in particular, witness high dropout rates, underemployment, and a disconnect between youth and opportunities in the development sector.</p>
+                    <p>This initiative envisions reversing that trend. We aim to build an ecosystem where young people—whether in school, college, or out of formal education—can discover their strengths, engage with their communities, and envision themselves as leaders and changemakers. Through structured guidance, real-world exposure, and sustained mentorship, we hope to nurture a generation that is not only skilled but also socially conscious and civically engaged.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section id="mission" class="content-section bg-light-grey">
+            <div class="container max-w-4xl">
+                <h2>Our Mission</h2>
+                <div>
+                    <p>Our mission is to empower the youth of Bihar through experiential learning, skill development, and values-based mentorship. By creating pathways for exposure to the nonprofit and development sector, we strive to:</p>
+                    <ul>
+                        <li>Build foundational professional and life skills among youth.</li>
+                        <li>Foster curiosity, civic engagement, and a sense of social responsibility.</li>
+                        <li>Help participants identify opportunities for further education, employment, or fellowships.</li>
+                        <li>Cultivate a culture of learning, reflection, and contribution to society.</li>
+                    </ul>
+                    <p>We believe that when youth are given the right environment, resources, and guidance, they can break cycles of marginalization and become active agents of positive change—not only for themselves but for their communities at large.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Program Structure: Youth Fellowship Section -->
+        <section id="program-structure" class="content-section bg-white">
+            <div class="container max-w-4xl">
+                <h2 class="sub-heading">Program Structure: Youth Fellowship</h2>
+                <p class="mb-8">The organization's flagship initiative is a six-month Youth Fellowship Program, targeting 20 selected participants from various blocks in Samastipur:</p>
+
+                <div class="program-grid">
+                    <!-- Month 1 -->
+                    <div class="program-card">
+                        <h3>Month 1: Mentorship & Orientation</h3>
+                        <ul>
+                            <li>In-depth workshops led by mentors on communication, leadership, teamwork, goal setting, and self-awareness.</li>
+                            <li>Basic digital literacy and training in MS Office tools, public speaking, and group collaboration.</li>
+                        </ul>
+                    </div>
+                    <!-- Month 2 -->
+                    <div class="program-card">
+                        <h3>Month 2: First NGO Internship</h3>
+                        <ul>
+                            <li>Fellows are placed with NGOs working in different domains (education, health, gender, etc.).</li>
+                            <li>Learn how civil society organizations function, engage with diverse communities, and understand social impact.</li>
+                        </ul>
+                    </div>
+                    <!-- Month 3 -->
+                    <div class="program-card">
+                        <h3>Month 3: Reflection & Advanced Mentoring</h3>
+                        <ul>
+                            <li>Fellows return to discuss experiences, refine their understanding, and receive tailored guidance.</li>
+                            <li>Focus on values, ethics, and career pathways.</li>
+                        </ul>
+                    </div>
+                    <!-- Month 4 -->
+                    <div class="program-card">
+                        <h3>Month 4: Second NGO Internship</h3>
+                        <ul>
+                            <li>Fellows are placed in a different domain to broaden their exposure and explore new interests.</li>
+                        </ul>
+                    </div>
+                    <!-- Month 5 -->
+                    <div class="program-card">
+                        <h3>Month 5: Skill Development & Preparation</h3>
+                        <ul>
+                            <li>Training in resume writing, presentation skills, fellowship applications, and interview preparation.</li>
+                        </ul>
+                    </div>
+                    <!-- Month 6 -->
+                    <div class="program-card">
+                        <h3>Month 6: Future Planning & Fellowship Applications</h3>
+                        <ul>
+                            <li>Fellows are supported in applying to long-term national fellowships and higher education programs.</li>
+                            <li>They are encouraged to build networks and explore careers in development and public leadership.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Outcomes & Impact -->
+                <div id="outcomes" class="outcomes-box">
+                    <h3>Outcomes & Impact</h3>
+                    <p>By the end of the fellowship, participants will have:</p>
+                    <ul>
+                        <li>Gained hands-on experience in two nonprofit organizations.</li>
+                        <li>Developed a suite of soft and technical skills.</li>
+                        <li>Connected with mentors and peers across sectors.</li>
+                        <li>Applied for advanced fellowships or employment opportunities.</li>
+                        <li>Developed a deeper sense of purpose and civic responsibility.</li>
+                    </ul>
+                    <p>This program will create a ripple effect by building a core group of young, skilled, and socially committed individuals who can become catalysts for change in Bihar and beyond.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fellows Carousel Section (Pure JS/CSS) -->
+        <section id="fellows" class="fellows-section">
+            <div class="container">
+                <h2>Meet Our Youth Fellows</h2>
+
+                <div class="carousel-container">
+                    <div class="carousel-wrapper" id="carousel-wrapper">
+                        <!-- Fellow Card 1 -->
+                        <div class="carousel-slide">
+                            <img src="images/profile1.jpg" alt="Priya Sharma Profile">
+                            <h3>Name</h3>
+                            <p class="role">Youth Leadership Fellow</p>
+                            <p class="description">"Learning to lead with purpose and compassion."</p>
+                            <button>View More</button>
+                        </div>
+                        <!-- Fellow Card 2 -->
+                        <div class="carousel-slide">
+                            <img src="images/profile2.jpg" alt="Rahul Kumar Profile">
+                            <h3>Name</h3>
+                            <p class="role">Community Engagement Intern</p>
+                            <p class="description">"Excited to make a tangible difference locally."</p>
+                            <button>View More</button>
+                        </div>
+                        <!-- Fellow Card 3 -->
+                        <div class="carousel-slide">
+                            <img src="images/profile3.jpg" alt="Anjali Singh Profile">
+                            <h3>NAME</h3>
+                            <p class="role">Digital Literacy Advocate</p>
+                            <p class="description">"Bridging the digital divide for rural youth."</p>
+                            <button>View More</button>
+                        </div>
+                        <!-- Fellow Card 4 (Repeating image as only 3 provided) -->
+                        <div class="carousel-slide">
+                            <img src="images/profile1.jpg" alt="Vikram Soni Profile">
+                            <h3>Vikram Soni</h3>
+                            <p class="role">Environmental Stewardship Fellow</p>
+                            <p class="description">"Working towards a greener and cleaner Bihar."</p>
+                            <button>View More</button>
+                        </div>
+                        <!-- Fellow Card 5 (Repeating image as only 3 provided) -->
+                        <div class="carousel-slide">
+                            <img src="images/profile2.jpg" alt="Kavita Devi Profile">
+                            <h3>NAME</h3>
+                            <p class="role">Rural Development Trainee</p>
+                            <p class="description">"Committed to uplifting my village community."</p>
+                            <button>View More</button>
+                        </div>
+                    </div>
+                    <!-- Carousel Navigation Buttons -->
+                    <button class="carousel-button prev" id="carousel-prev-btn">&#10094;</button> <!-- Left arrow -->
+                    <button class="carousel-button next" id="carousel-next-btn">&#10095;</button> <!-- Right arrow -->
+                </div>
+                <!-- Carousel Pagination Dots -->
+                <div class="carousel-pagination" id="carousel-pagination">
+                    <!-- Dots will be generated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Apply Section (Redirects to Google Form) -->
+        <section id="apply" class="apply-section">
+            <div class="container">
+                <h2>Youth Fellowship Application</h2>
+                <p>Ready to embark on a journey of growth and social impact? Click the button below to fill out our application form. We are excited to learn more about your passion for making a difference in Bihar.</p>
+                <p>The application process is simple and designed to help us understand your potential and aspirations. Don't miss this opportunity to become a changemaker!</p>
+                <a href="https://forms.gle/wGdxhF4FzKjDKgPi8" target="_blank" class="apply-button">
+                    Start Your Application
+                </a>
+            </div>
+        </section>
+
+        <!-- Social Media Section (Pure JS/CSS) -->
+        <section id="connect" class="social-media-section">
+            <div class="container">
+                <h2>Connect With Us</h2>
+
+                <div class="social-media-grid">
+                    <!-- Social Media Card 1: Instagram -->
+                    <div class="social-card">
+                        <img src="images/instagram.png" alt="Instagram Icon" class="icon-img">
+                        <h3>Instagram</h3>
+                        <p>Explore our journey through visuals.</p>
+                        <a href="https://www.instagram.com/the_navpravah_foundation?igsh=cmNiZXVmY3o3bDNs" target="_blank" class="button">Visit Page</a>
+                    </div>
+                    
+                 
+                  
+                    <!-- Social Media Card 2: YouTube -->
+                    <div class="social-card">
+                        <img src="images/youtube.png" alt="YouTube Icon" class="icon-img">
+                        <h3>YouTube</h3>
+                        <p>Watch stories of impact and growth.</p>
+                        <a href="https://youtube.com/@thenavpravahfoundation?si=OKNdVknrgFE7iva-" target="_blank" class="button">Visit Page</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pure JavaScript for functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Mobile Menu Toggle Logic ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuButton.addEventListener('click', function() {
+                if (mobileMenu.style.display === 'flex') {
+                    mobileMenu.style.display = 'none';
+                } else {
+                    mobileMenu.style.display = 'flex';
+                }
+            });
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.style.display = 'none';
+                });
+            });
+
+            // --- Custom Carousel Logic ---
+            const carouselWrapper = document.getElementById('carousel-wrapper');
+            const carouselSlides = document.querySelectorAll('.carousel-slide');
+            const prevBtn = document.getElementById('carousel-prev-btn');
+            const nextBtn = document.getElementById('carousel-next-btn');
+            const paginationContainer = document.getElementById('carousel-pagination');
+
+            let currentSlideIndex = 0;
+            let slidesPerView = 1;
+            let slideGap = 32; // Default gap in pixels (2rem)
+            let autoPlayInterval;
+
+            function updateCarousel() {
+                if (window.innerWidth >= 1024) {
+                    slidesPerView = 3;
+                    slideGap = 20;
+                } else if (window.innerWidth >= 768) {
+                    slidesPerView = 2;
+                    slideGap = 24;
+                } else {
+                    slidesPerView = 1;
+                    slideGap = 32;
+                }
+
+                const carouselContainerWidth = carouselWrapper.parentElement.clientWidth;
+                const singleSlideWidth = (carouselContainerWidth - ((slidesPerView - 1) * slideGap)) / slidesPerView;
+
+                carouselSlides.forEach((slide, index) => {
+                    slide.style.width = `${singleSlideWidth}px`;
+                    slide.style.marginRight = (index < carouselSlides.length - 1) ? `${slideGap}px` : '0px';
+                });
+
+                const offset = currentSlideIndex * (singleSlideWidth + slideGap);
+                carouselWrapper.style.transform = `translateX(-${offset}px)`;
+
+                updatePaginationDots();
+            }
+
+            function setupPaginationDots() {
+                paginationContainer.innerHTML = '';
+                const numDots = carouselSlides.length;
+                for (let i = 0; i < numDots; i++) {
+                    const dot = document.createElement('span');
+                    dot.classList.add('pagination-dot');
+                    dot.dataset.index = i;
+                    dot.addEventListener('click', () => {
+                        currentSlideIndex = i;
+                        updateCarousel();
+                        resetAutoplay();
+                    });
+                    paginationContainer.appendChild(dot);
+                }
+                updatePaginationDots();
+            }
+
+            function updatePaginationDots() {
+                const dots = paginationContainer.querySelectorAll('.pagination-dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.remove('active');
+                    if (index === currentSlideIndex) {
+                        dot.classList.add('active');
+                    }
+                });
+            }
+
+            function goToPrevSlide() {
+                currentSlideIndex--;
+                if (currentSlideIndex < 0) {
+                    currentSlideIndex = carouselSlides.length - 1;
+                }
+                updateCarousel();
+            }
+
+            function goToNextSlide() {
+                currentSlideIndex++;
+                if (currentSlideIndex >= carouselSlides.length) {
+                    currentSlideIndex = 0;
+                }
+                updateCarousel();
+            }
+
+            function startAutoplay() {
+                stopAutoplay();
+                autoPlayInterval = setInterval(goToNextSlide, 5000);
+            }
+
+            function stopAutoplay() {
+                clearInterval(autoPlayInterval);
+            }
+
+            function resetAutoplay() {
+                stopAutoplay();
+                startAutoplay();
+            }
+
+            prevBtn.addEventListener('click', () => {
+                goToPrevSlide();
+                resetAutoplay();
+            });
+            nextBtn.addEventListener('click', () => {
+                goToNextSlide();
+                resetAutoplay();
+            });
+
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    updateCarousel();
+                    setupPaginationDots();
+                }, 200);
+            });
+
+            setupPaginationDots();
+            updateCarousel();
+            startAutoplay();
+        });
+    </script>
+</body>
+</html>
