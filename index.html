@@ -6,247 +6,554 @@
     <title>Navpravah Foundation</title>
     <!-- Google Fonts: Inter - for clean, modern sans-serif typography -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS CDN - for utility-first styling and responsiveness -->
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom Tailwind Configuration for consistent branding */
-        @layer base {
-            /* Sets 'Inter' as the default font for the entire page */
-            html {
-                font-family: 'Inter', sans-serif;
-            }
+        /* CSS Variables for consistent branding */
+        :root {
+            --primary-blue: #1E64C8;
+            --dark-blue: #14498f; /* Slightly darker primary blue for hover/active states */
+            --light-blue-bg: #E0F2FE; /* For placeholder image backgrounds */
+            --light-grey-bg: #F5F5FA;
+            --text-dark: #333;
+            --text-grey: #666;
+            --white: #ffffff;
+            --black: #000000;
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --shadow-medium: rgba(0, 0, 0, 0.2);
+            --border-radius-md: 0.5rem; /* ~8px */
+            --border-radius-lg: 0.75rem; /* ~12px */
+            --border-radius-full: 9999px;
+            --border-color-light: #e0e0e0; /* Thin line color */
         }
-        /* Custom styles for Swiper navigation arrows */
-        .swiper-button-prev,
-        .swiper-button-next {
-            color: #1E64C8 !important; /* Forces the specific blue color */
-            --swiper-navigation-size: 30px; /* Adjusts arrow size */
+
+        /* Base Body Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-grey-bg);
+            color: var(--text-dark);
+            line-height: 1.6;
         }
-        /* Hides arrows on smaller screens and displays on larger ones for better UX */
-        @media (max-width: 767px) {
-            .swiper-button-prev,
-            .swiper-button-next {
-                display: none !important;
-            }
+
+        /* Container for content width centering */
+        .container {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem; /* 16px */
+            padding-right: 1rem; /* 16px */
         }
-        /* Custom style for the logo image */
+
+        /* --- Header Section Styles --- */
+        .header {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 1rem 0; /* 16px top/bottom */
+            box-shadow: 0 4px 6px -1px var(--shadow-light); /* shadow-md */
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         .header-logo {
-            height: 40px; /* Set a fixed height for the logo */
-            width: auto; /* Maintain aspect ratio */
-            transition: transform 0.3s ease; /* Smooth hover effect */
+            height: 40px;
+            width: auto;
+            border-radius: var(--border-radius-md);
+            padding: 0.25rem; /* 4px */
+            transition: transform 0.3s ease;
         }
         .header-logo:hover {
-            transform: scale(1.05); /* Slightly enlarge on hover */
+            transform: scale(1.05);
         }
-    </style>
-    <!-- Swiper CSS - for the interactive carousel slider -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <!-- Font Awesome for Icons - for social media and other UI icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body class="bg-gray-50 text-gray-800">
 
-    <!-- Header Section: Sticky and Responsive -->
-    <!-- Uses Tailwind classes for background color, padding, shadow, and sticky positioning -->
-    <header class="bg-[#1E64C8] text-white p-4 shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto flex justify-between items-center">
-            <!-- Logo/Home Button -->
-            <!-- Using a placeholder image for the logo as requested -->
-            <a href="#" class="rounded-md p-1">
-                <img src="https://placehold.co/150x40/ffffff/1E64C8?text=NAVPRAVAH+LOGO" alt="Navpravah Foundation Logo" class="header-logo">
-            </a>
+        .mobile-menu-button {
+            display: block; /* Always display for mobile */
+            background: none;
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            padding: 0.5rem; /* 8px */
+        }
+        .mobile-menu-button svg {
+            width: 32px;
+            height: 32px;
+            fill: currentColor; /* Ensures the SVG icon uses the current text color */
+        }
 
-            <!-- Mobile Menu Button (Hamburger Icon) -->
-            <!-- Visible only on small screens (md:hidden) -->
-            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
-            </button>
+        .desktop-nav-menu {
+            display: none; /* Hidden by default for mobile, shown on larger screens */
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .desktop-nav-menu li {
+            display: inline-block;
+            margin-left: 1.5rem; /* 24px */
+        }
+        .desktop-nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.125rem; /* 18px */
+            padding: 0.5rem 0.75rem; /* 8px 12px */
+            border-radius: var(--border-radius-md);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .desktop-nav-menu a:hover {
+            background-color: var(--white);
+            color: var(--primary-blue);
+            text-decoration: underline;
+        }
 
-            <!-- Desktop Navigation Menu -->
-            <!-- Hidden on small screens (hidden) and displayed as a flex row on medium screens and up (md:flex) -->
-            <ul class="hidden md:flex space-x-6 text-lg">
-                <li><a href="#apply" class="hover:underline rounded-md px-3 py-2 hover:bg-white hover:text-[#1E64C8] transition-colors duration-300">Apply</a></li>
-                <li><a href="#program-structure" class="hover:underline rounded-md px-3 py-2 hover:bg-white hover:text-[#1E64C8] transition-colors duration-300">Program</a></li>
-                <li><a href="#mission" class="hover:underline rounded-md px-3 py-2 hover:bg-white hover:text-[#1E64C8] transition-colors duration-300">Mission</a></li>
-                <li><a href="#background" class="hover:underline rounded-md px-3 py-2 hover:bg-white hover:text-[#1E64C8] transition-colors duration-300">About Us</a></li>
-                <li><a href="#connect" class="hover:underline rounded-md px-3 py-2 hover:bg-white hover:text-[#1E64C8] transition-colors duration-300">Connect</a></li>
-            </ul>
-        </nav>
+        .mobile-nav-menu {
+            display: none; /* Hidden by default, toggled by JS */
+            background-color: var(--primary-blue);
+            padding: 1rem 0;
+            transition: all 0.3s ease-in-out;
+            overflow-y: auto; /* Allow scrolling if menu content is too long */
+            max-height: calc(100vh - 60px); /* Adjust max-height for header height */
+        }
+        .mobile-nav-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            row-gap: 1rem; /* 16px */
+        }
+        .mobile-nav-menu a {
+            display: block;
+            width: 100%;
+            text-align: center;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.125rem; /* 18px */
+            padding: 0.5rem 1rem; /* 8px 16px */
+            border-radius: var(--border-radius-md);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .mobile-nav-menu a:hover {
+            background-color: var(--white);
+            color: var(--primary-blue);
+        }
 
-        <!-- Mobile Navigation Menu (Hidden by default) -->
-        <!-- Toggled by JavaScript to show/hide on mobile -->
-        <div id="mobile-menu" class="hidden md:hidden bg-[#1E64C8] py-4 transition-all duration-300 ease-in-out">
-            <ul class="flex flex-col items-center space-y-4 text-lg">
-                <li><a href="#apply" class="block w-full text-center px-4 py-2 hover:bg-white hover:text-[#1E64C8] rounded-md transition-colors duration-300">Apply</a></li>
-                <li><a href="#program-structure" class="block w-full text-center px-4 py-2 hover:bg-white hover:text-[#1E64C8] rounded-md transition-colors duration-300">Program</a></li>
-                <li><a href="#mission" class="block w-full text-center px-4 py-2 hover:bg-white hover:text-[#1E64C8] rounded-md transition-colors duration-300">Mission</a></li>
-                <li><a href="#background" class="block w-full text-center px-4 py-2 hover:bg-white hover:text-[#1E64C8] rounded-md transition-colors duration-300">About Us</a></li>
-                <li><a href="#connect" class="block w-full text-center px-4 py-2 hover:bg-white hover:text-[#1E64C8] rounded-md transition-colors duration-300">Connect</a></li>
-            </ul>
-        </div>
-    </header>
+        /* Media Queries for Header Responsiveness */
+        @media (min-width: 768px) { /* md breakpoint */
+            .mobile-menu-button {
+                display: none; /* Hide hamburger on desktop */
+            }
+            .desktop-nav-menu {
+                display: flex; /* Show desktop nav */
+            }
+            .mobile-nav-menu {
+                display: none !important; /* Ensure mobile menu is explicitly hidden on desktop */
+            }
+        }
 
-    <main>
-        <!-- Hero Section -->
-        <section id="hero" class="relative bg-gradient-to-r from-blue-700 to-indigo-800 text-white py-24 px-4 text-center rounded-b-lg shadow-lg">
-            <div class="container mx-auto">
-                <h1 class="text-5xl md:text-6xl font-extrabold mb-4 leading-tight">Empowering Youth, Transforming Bihar</h1>
-                <p class="text-xl md:text-2xl opacity-90 max-w-2xl mx-auto mb-8">Nurturing a generation of skilled, socially conscious, and civically engaged changemakers.</p>
-                <a href="#apply" class="inline-block bg-white text-[#1E64C8] font-bold py-3 px-8 rounded-full text-lg shadow-lg hover:bg-gray-100 transform hover:scale-105 transition-all duration-300">
-                    Apply for Fellowship
-                </a>
-            </div>
-        </section>
+        /* --- Hero Section Styles --- */
+        .hero-section {
+            position: relative;
+            background: linear-gradient(to right, #1E64C8, #4c62c3); /* Gradient from primary blue to slightly darker blue */
+            color: var(--white);
+            padding: 6rem 1rem; /* 96px top/bottom, 16px left/right */
+            text-align: center;
+            border-bottom-left-radius: var(--border-radius-lg);
+            border-bottom-right-radius: var(--border-radius-lg);
+            box-shadow: 0 10px 15px -3px var(--shadow-medium); /* Larger shadow for emphasis */
+        }
+        .hero-section h1 {
+            font-size: 3rem; /* 48px */
+            font-weight: 800;
+            margin-bottom: 1rem; /* 16px */
+            line-height: 1.25;
+        }
+        .hero-section p {
+            font-size: 1.25rem; /* 20px */
+            opacity: 0.9;
+            max-width: 36rem; /* 576px */
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem; /* 32px */
+        }
+        .hero-button {
+            display: inline-block;
+            background-color: var(--white);
+            color: var(--primary-blue);
+            font-weight: 700;
+            padding: 0.75rem 2rem; /* 12px 32px */
+            border-radius: var(--border-radius-full);
+            font-size: 1.125rem; /* 18px */
+            box-shadow: 0 4px 6px -1px var(--shadow-medium);
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .hero-button:hover {
+            background-color: #f3f4f6; /* Light gray on hover */
+            transform: scale(1.05); /* Slight scale animation */
+        }
 
-        <!-- Background & Vision Section -->
-        <section id="background" class="py-16 px-4 bg-white">
-            <div class="container mx-auto max-w-4xl">
-                <h2 class="text-4xl font-bold text-center mb-8 text-[#1E64C8]">Background & Vision</h2>
-                <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
-                    <p>Bihar, one of India’s youngest states in terms of demographics, faces a paradox of potential and neglect. While youth represent a powerful force for social transformation, many are constrained by limited exposure, lack of mentorship, training and inadequate access to skill-building platforms. Rural and semi-urban areas, in particular, witness high dropout rates, underemployment, and a disconnect between youth and opportunities in the development sector.</p>
-                    <p>This initiative envisions reversing that trend. We aim to build an ecosystem where young people—whether in school, college, or out of formal education—can discover their strengths, engage with their communities, and envision themselves as leaders and changemakers. Through structured guidance, real-world exposure, and sustained mentorship, we hope to nurture a generation that is not only skilled but also socially conscious and civically engaged.</p>
-                </div>
-            </div>
-        </section>
+        /* Media Queries for Hero Section */
+        @media (min-width: 768px) { /* md breakpoint */
+            .hero-section h1 {
+                font-size: 3.75rem; /* 60px */
+            }
+            .hero-section p {
+                font-size: 1.5rem; /* 24px */
+            }
+        }
 
-        <!-- Mission Section -->
-        <section id="mission" class="py-16 px-4 bg-[#F5F5FA]">
-            <div class="container mx-auto max-w-4xl">
-                <h2 class="text-4xl font-bold text-center mb-8 text-[#1E64C8]">Our Mission</h2>
-                <div class="space-y-6 text-lg text-gray-700 leading-relaxed">
-                    <p>Our mission is to empower the youth of Bihar through experiential learning, skill development, and values-based mentorship. By creating pathways for exposure to the nonprofit and development sector, we strive to:</p>
-                    <ul class="list-disc list-inside space-y-2 pl-4">
-                        <li>Build foundational professional and life skills among youth.</li>
-                        <li>Foster curiosity, civic engagement, and a sense of social responsibility.</li>
-                        <li>Help participants identify opportunities for further education, employment, or fellowships.</li>
-                        <li>Cultivate a culture of learning, reflection, and contribution to society.</li>
-                    </ul>
-                    <p>We believe that when youth are given the right environment, resources, and guidance, they can break cycles of marginalization and become active agents of positive change—not only for themselves but for their communities at large.</p>
-                </div>
-            </div>
-        </section>
+        /* --- Content Sections (Background, Mission, Program Structure, Outcomes) Styles --- */
+        .content-section {
+            padding: 4rem 1rem; /* 64px top/bottom, 16px left/right */
+        }
+        .content-section.bg-white {
+            background-color: var(--white);
+        }
+        .content-section.bg-light-grey {
+            background-color: var(--light-grey-bg);
+        }
+        .content-section h2 {
+            font-size: 2.25rem; /* 36px */
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem; /* 48px */
+            color: var(--primary-blue);
+        }
+        .content-section p {
+            font-size: 1.125rem; /* 18px */
+            color: var(--text-grey);
+            margin-bottom: 1.5rem; /* 24px */
+        }
+        .content-section ul {
+            list-style-type: disc;
+            margin-left: 1.5rem; /* 24px */
+            padding-left: 1rem; /* 16px */
+        }
+        .content-section ul li {
+            margin-bottom: 0.5rem; /* 8px */
+            color: var(--text-grey);
+            font-size: 1.125rem; /* 18px */
+        }
+        .content-section .sub-heading {
+            font-size: 2.5rem; /* 40px */
+            font-weight: 700;
+            margin-bottom: 3rem; /* 48px */
+            color: var(--primary-blue);
+            text-align: center;
+        }
 
-        <!-- Program Structure: Youth Fellowship Section -->
-        <section id="program-structure" class="py-16 px-4 bg-white">
-            <div class="container mx-auto max-w-4xl">
-                <h2 class="text-4xl font-bold text-center mb-12 text-[#1E64C8]">Program Structure: Youth Fellowship</h2>
-                <p class="text-lg text-gray-700 mb-8 leading-relaxed">The organization's flagship initiative is a six-month Youth Fellowship Program, targeting 20 selected participants from various blocks in Samastipur:</p>
+        /* Program Structure Cards Grid */
+        .program-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Single column on mobile */
+            gap: 2rem; /* 32px */
+        }
+        .program-card {
+            background-color: var(--light-grey-bg);
+            padding: 1.5rem; /* 24px */
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 4px 6px -1px var(--shadow-light);
+            border-left: 4px solid #3B82F6; /* Blue border for visual accent */
+            border: 1px solid var(--border-color-light); /* Thin line border */
+        }
+        .program-card h3 {
+            font-size: 1.25rem; /* 20px */
+            font-weight: 600;
+            color: #1D4ED8; /* Darker blue for heading */
+            margin-bottom: 0.75rem; /* 12px */
+        }
+        .program-card ul {
+            list-style-type: disc;
+            margin-left: 1rem; /* 16px */
+            padding-left: 0;
+            font-size: 0.875rem; /* 14px */
+            color: var(--text-grey);
+        }
+        .program-card ul li {
+            margin-bottom: 0.25rem; /* 4px */
+        }
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Month 1 -->
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-                        <h3 class="text-xl font-semibold text-blue-800 mb-3">Month 1: Mentorship & Orientation</h3>
-                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
-                            <li>In-depth workshops led by mentors on communication, leadership, teamwork, goal setting, and self-awareness.</li>
-                            <li>Basic digital literacy and training in MS Office tools, public speaking, and group collaboration.</li>
-                        </ul>
-                    </div>
-                    <!-- Month 2 -->
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-                        <h3 class="text-xl font-semibold text-blue-800 mb-3">Month 2: First NGO Internship</h3>
-                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
-                            <li>Fellows are placed with NGOs working in different domains (education, health, gender, etc.).</li>
-                            <li>Learn how civil society organizations function, engage with diverse communities, and understand social impact.</li>
-                        </ul>
-                    </div>
-                    <!-- Month 3 -->
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-                        <h3 class="text-xl font-semibold text-blue-800 mb-3">Month 3: Reflection & Advanced Mentoring</h3>
-                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
-                            <li>Fellows return to discuss experiences, refine their understanding, and receive tailored guidance.</li>
-                            <li>Focus on values, ethics, and career pathways.</li>
-                        </ul>
-                    </div>
-                    <!-- Month 4 -->
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-                        <h3 class="text-xl font-semibold text-blue-800 mb-3">Month 4: Second NGO Internship</h3>
-                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
-                            <li>Fellows are placed in a different domain to broaden their exposure and explore new interests.</li>
-                        </ul>
-                    </div>
-                    <!-- Month 5 -->
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-                        <h3 class="text-xl font-semibold text-blue-800 mb-3">Month 5: Skill Development & Preparation</h3>
-                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
-                            <li>Training in resume writing, presentation skills, fellowship applications, and interview preparation.</li>
-                        </ul>
-                    </div>
-                    <!-- Month 6 -->
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-                        <h3 class="text-xl font-semibold text-blue-800 mb-3">Month 6: Future Planning & Fellowship Applications</h3>
-                        <ul class="list-disc list-inside text-gray-700 text-sm space-y-1">
-                            <li>Fellows are supported in applying to long-term national fellowships and higher education programs.</li>
-                            <li>They are encouraged to build networks and explore careers in development and public leadership.</li>
-                        </ul>
-                    </div>
-                </div>
+        /* Outcomes & Impact Box Styles */
+        .outcomes-box {
+            margin-top: 4rem; /* 64px top margin */
+            background-color: var(--light-grey-bg);
+            padding: 2rem; /* 32px padding */
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 4px 6px -1px var(--shadow-light);
+            border: 1px solid var(--border-color-light); /* Thin line border */
+        }
+        .outcomes-box h3 {
+            font-size: 1.875rem; /* 30px */
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem; /* 24px */
+            color: var(--primary-blue);
+        }
+        .outcomes-box p {
+            font-size: 1.125rem; /* 18px */
+            color: var(--text-grey);
+            margin-bottom: 1.5rem; /* 24px */
+        }
+        .outcomes-box ul {
+            list-style-type: disc;
+            margin-left: 1.5rem; /* 24px */
+            padding-left: 1rem; /* 16px */
+        }
+        .outcomes-box ul li {
+            margin-bottom: 0.75rem; /* 12px */
+            font-size: 1.125rem; /* 18px */
+            color: var(--text-grey);
+        }
 
-                <!-- Outcomes & Impact -->
-                <div id="outcomes" class="mt-16 bg-[#F5F5FA] p-8 rounded-lg shadow-lg">
-                    <h3 class="text-3xl font-bold text-center mb-6 text-[#1E64C8]">Outcomes & Impact</h3>
-                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">By the end of the fellowship, participants will have:</p>
-                    <ul class="list-disc list-inside space-y-3 pl-4 text-gray-700 text-lg">
-                        <li>Gained hands-on experience in two nonprofit organizations.</li>
-                        <li>Developed a suite of soft and technical skills.</li>
-                        <li>Connected with mentors and peers across sectors.</li>
-                        <li>Applied for advanced fellowships or employment opportunities.</li>
-                        <li>Developed a deeper sense of purpose and civic responsibility.</li>
-                    </ul>
-                    <p class="text-lg text-gray-700 mt-6 leading-relaxed">This program will create a ripple effect by building a core group of young, skilled, and socially committed individuals who can become catalysts for change in Bihar and beyond.</p>
-                </div>
-            </div>
-        </section>
+        /* Media Queries for Program Structure Grid */
+        @media (min-width: 768px) { /* md breakpoint */
+            .program-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .content-section h2 {
+                font-size: 2.5rem; /* 40px */
+            }
+        }
+        @media (min-width: 1024px) { /* lg breakpoint */
+            .program-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .content-section h2 {
+                font-size: 3rem; /* 48px */
+            }
+        }
 
-        <!-- Fellows Carousel Section: Highlighted Feature using Swiper.js -->
-        <!-- Showcases youth fellows with interactive slider -->
-        <section id="fellows" class="py-16 bg-white px-4 overflow-hidden"> <!-- Added overflow-hidden to ensure no content spills out -->
-            <div class="container mx-auto">
-                <h2 class="text-4xl font-bold text-center mb-12 text-[#1E64C8]">Meet Our Youth Fellows</h2>
+        /* --- Fellows Carousel Section Styles (Rebuilt) --- */
+        .fellows-section {
+            padding: 4rem 1rem; /* 64px top/bottom, 16px left/right */
+            background-color: var(--white);
+            overflow: hidden; /* Crucial to prevent carousel overflow */
+            position: relative; /* For carousel controls positioning */
+        }
+        .fellows-section h2 {
+            font-size: 2.25rem; /* 36px */
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem; /* 48px */
+            color: var(--primary-blue);
+        }
 
-                <!-- Swiper container for the carousel -->
-                <div class="swiper-container w-full max-w-5xl mx-auto relative">
-                    <div class="swiper-wrapper py-8">
-                        <!-- Fellow Card 1 -->
-                        <div class="swiper-slide p-6 bg-white rounded-xl shadow-lg border-t-4 border-[#1E64C8] flex flex-col items-center text-center space-y-4">
-                            <!-- Placeholder image with border and shadow for visual appeal -->
-                            <img src="https://placehold.co/120x120/E0F2FE/1E64C8?text=F1" alt="Fellow 1" class="w-32 h-32 rounded-full border-4 border-white shadow-md object-cover">
-                            <h3 class="text-xl font-bold text-gray-900">Priya Sharma</h3>
-                            <p class="text-blue-600 font-medium">Youth Leadership Fellow</p>
-                            <p class="text-gray-600 text-sm italic">"Learning to lead with purpose and compassion."</p>
-                            <button class="mt-4 bg-[#1E64C8] text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 text-sm">View More</button>
-                        </div>
-                        <!-- Fellow Card 2 -->
-                        <div class="swiper-slide p-6 bg-white rounded-xl shadow-lg border-t-4 border-[#1E64C8] flex flex-col items-center text-center space-y-4">
-                            <img src="https://placehold.co/120x120/E0F2FE/1E64C8?text=F2" alt="Fellow 2" class="w-32 h-32 rounded-full border-4 border-white shadow-md object-cover">
-                            <h3 class="text-xl font-bold text-gray-900">Rahul Kumar</h3>
-                            <p class="text-blue-600 font-medium">Community Engagement Intern</p>
-                            <p class="text-gray-600 text-sm italic">"Excited to make a tangible difference locally."</p>
-                            <button class="mt-4 bg-[#1E64C8] text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 text-sm">View More</button>
-                        </div>
-                        <!-- Fellow Card 3 -->
-                        <div class="swiper-slide p-6 bg-white rounded-xl shadow-lg border-t-4 border-[#1E64C8] flex flex-col items-center text-center space-y-4">
-                            <img src="https://placehold.co/120x120/E0F2FE/1E64C8?text=F3" alt="Fellow 3" class="w-32 h-32 rounded-full border-4 border-white shadow-md object-cover">
-                            <h3 class="text-xl font-bold text-gray-900">Anjali Singh</h3>
-                            <p class="text-blue-600 font-medium">Digital Literacy Advocate</p>
-                            <p class="text-gray-600 text-sm italic">"Bridging the digital divide for rural youth."</p>
-                            <button class="mt-4 bg-[#1E64C8] text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 text-sm">View More</button>
-                        </div>
-                        <!-- Fellow Card 4 -->
-                        <div class="swiper-slide p-6 bg-white rounded-xl shadow-lg border-t-4 border-[#1E64C8] flex flex-col items-center text-center space-y-4">
-                            <img src="https://placehold.co/120x120/E0F2FE/1E64C8?text=F4" alt="Fellow 4" class="w-32 h-32 rounded-full border-4 border-white shadow-md object-cover">
-                            <h3 class="text-xl font-bold text-gray-900">Vikram Soni</h3>
-                            <p class="text-blue-600 font-medium">Environmental Stewardship Fellow</p>
-                            <p class="text-gray-600 text-sm italic">"Working towards a greener and cleaner Bihar."</p>
-                            <button class="mt-4 bg-[#1E64C8] text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 text-sm">View More</button>
-                        </div>
-                        <!-- Fellow Card 5 -->
-                        <div class="swiper-slide p-6 bg-white rounded-xl shadow-lg border-t-4 border-[#1E64C8] flex flex-col items-center text-center space-y-4">
-                            <img src="https://placehold.co/120x120/E0F2FE/1E64C8?text=F5" alt="Fellow 5" class="w-32 h-32 rounded-full border-4 border-white shadow-md object-cover">
-                            <h3 class="text-xl font-bold text-gray-900">Kavita Devi</h3>
-                            <p class="text-blue-600 font-medium">Rural Development Trainee</p>
-                            <p class="text-gray-600 text-sm italic">"Committed to uplifting my village community."</p>
-                            <button class="mt-4 bg-[#1E64C8] text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 text-sm">View More</button>
-                        </div>
-                
+        .carousel-container {
+            width: 100%;
+            max-width: 1024px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden; /* Important for the sliding effect */
+        }
+
+        .carousel-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out; /* Smooth transition for slides */
+            padding-top: 2rem; /* Padding for cards to have shadow/border space */
+            padding-bottom: 2rem;
+        }
+
+        .carousel-slide {
+            flex-shrink: 0; /* Prevents slides from shrinking */
+            width: calc(100% - 2rem); /* Default width (full width - some margin) */
+            margin-right: 2rem; /* Space between slides */
+            padding: 1.5rem;
+            background-color: var(--white);
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 4px 6px -1px var(--shadow-light);
+            border-top: 4px solid var(--primary-blue);
+            border: 1px solid var(--border-color-light); /* Thin line border */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            row-gap: 1rem;
+            box-sizing: border-box; /* Include padding/border in width calculation */
+        }
+
+        .carousel-slide img {
+            width: 8rem;
+            height: 8rem;
+            border-radius: var(--border-radius-full);
+            border: 4px solid var(--white);
+            box-shadow: 0 2px 4px -1px var(--shadow-light);
+            object-fit: cover;
+        }
+        .carousel-slide h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+        .carousel-slide .role {
+            color: #2563EB;
+            font-weight: 500;
+        }
+        .carousel-slide .description {
+            color: var(--text-grey);
+            font-size: 0.875rem;
+            font-style: italic;
+        }
+        .carousel-slide button {
+            margin-top: 1rem;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--border-radius-lg);
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 0.875rem;
+        }
+        .carousel-slide button:hover {
+            background-color: var(--dark-blue);
+        }
+
+        /* Carousel Navigation Buttons */
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid var(--border-color-light);
+            border-radius: var(--border-radius-full);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 2px 5px var(--shadow-light);
+            transition: background-color 0.3s, transform 0.3s;
+            color: var(--primary-blue);
+            font-size: 1.5rem; /* Larger arrow icon */
+            /* Prevent selection of button text */
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none;   /* Safari */
+            -khtml-user-select: none;    /* Konqueror HTML */
+            -moz-user-select: none;      /* Old versions of Firefox */
+            -ms-user-select: none;       /* Internet Explorer/Edge */
+            user-select: none;           /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+        }
+        .carousel-button:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            transform: translateY(-50%) scale(1.05);
+        }
+        .carousel-button.prev {
+            left: 0.5rem; /* 8px from left */
+        }
+        .carousel-button.next {
+            right: 0.5rem; /* 8px from right */
+        }
+        /* Hide buttons on smaller screens */
+        @media (max-width: 767px) {
+            .carousel-button {
+                display: none;
+            }
+        }
+
+        /* Carousel Pagination Dots */
+        .carousel-pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem; /* 24px */
+            column-gap: 0.5rem; /* 8px space between dots */
+        }
+        .pagination-dot {
+            width: 10px;
+            height: 10px;
+            background-color: #d1d5db; /* gray-300 */
+            border-radius: var(--border-radius-full);
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .pagination-dot.active {
+            background-color: var(--primary-blue);
+            transform: scale(1.2);
+        }
+
+        /* Media Queries for Carousel Slides per View */
+        @media (min-width: 768px) { /* md breakpoint */
+            .carousel-slide {
+                width: calc(50% - 1.5rem); /* 2 slides per view with 1.5rem (24px) margin for 30px gap */
+                margin-right: 1.5rem; /* 24px */
+            }
+        }
+        @media (min-width: 1024px) { /* lg breakpoint */
+            .carousel-slide {
+                width: calc(33.333% - 1.333rem); /* 3 slides per view with ~1.33rem margin for 20px gap */
+                margin-right: 1.25rem; /* 20px */
+            }
+        }
+
+        /* --- Social Media Section Styles --- */
+        .social-media-section {
+            padding: 4rem 1rem; /* 64px top/bottom, 16px left/right */
+            background-color: var(--light-grey-bg);
+        }
+        .social-media-section h2 {
+            font-size: 2.25rem; /* 36px */
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem; /* 48px */
+            color: var(--primary-blue);
+        }
+        .social-media-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Single column on mobile */
+            gap: 2rem; /* 32px */
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .social-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 4px 6px -1px var(--shadow-light);
+            padding: 1.5rem; /* 24px */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            border: 1px solid var(--border-color-light); /* Thin line border */
+        }
+        .social-card .icon-img {
+            width: 60px; /* Adjust size to fit new icon image paths */
+            height: 60px;
+            margin-bottom: 1rem;
+        }
+
+        .social-card h3 {
+            font-size: 1.5rem; /* 24px */
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem; /* 8px */
+        }
+        .social-card p {
+            color: var(--text-grey);
+            margin-bottom: 1rem; /* 16px */
+        }
+        .social-card a.button {
+            width: auto; /* Changed from 100% to auto to allow smaller button */
+            min-width: 120px; /* Ensure a minimum width */
+            padding: 0.6rem 1.2rem; /* Reduced padding for smaller button */
+            font-size: 0.95rem; /* Slightly smaller font size */
+            background-color: var(--black);
+            color: var(--white);
+            border-radius: var(--border-radius-md); /* Slightly smaller border radius for the button */
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-weight: 600;
+        }
+        .social-card a.button:hover {
+            background-color: #374151; /* Dark gray on hover */
+        }
+
+        /* Media
